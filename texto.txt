@@ -1,0 +1,40 @@
+- Mirar concepto batch 
+- Grafica de error (curva) y confusion matrix (falsos positivos etc) , entender el concepto bien
+- Mirar concepto incertidumbre , como dar medida de incertidumbre sobre algo (con la varianza)
+- ¿Como de confiable clasificador para cada clase?
+- Calcular CDF / red neuronal bayesiana
+- PROBAR LOS DOS , UNO DE DOS FASES OTRO DE UNA ( SILENCIO ,C4,D4,E4)
+
+- Expande o reduce. Dependera de tu problema usar escala mel o no. Pensar si escala.
+
+project/
+│
+├── data/
+│     ├── voice_1.wav
+│     ├── midi_1.mid
+│     └── ...
+│
+├── scripts/
+│     ├── extract_cqt.py
+│     ├── midi_to_labels.py
+│     ├── build_dataset.py
+│     └── train_model.py   
+│
+├── utils/
+│     ├── audio_utils.py
+│     ├── midi_utils.py
+│     └── dataset_utils.py
+│
+└── requirements.txt
+
+audio.wav → extract_cqt.py
+midi.mid  → midi_to_labels.py
+X, Y → build_dataset.py
+modelo.py → entrenar CRNN
+
+Estrategias:
+Procesar en ventanas
+Divide el audio largo en ventanas de 4 segundos, las pasas por el modelo y luego concatenas los vectores de salida.
+Es la más común y segura.
+
+Cambiar a 1600 Hz y reducri hop
