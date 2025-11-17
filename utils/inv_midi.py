@@ -6,8 +6,8 @@ INV_MIDI_MAP = {0: -1, 1: 60, 2: 64, 3: 67}
 
 def sequence_to_midi(labels,
                      output_path="reconstruir.mid",
-                     sr=8000,
-                     hop_length=48,
+                     sr=16000,
+                     hop_length=96,
                      velocity=64,
                      tempo_bpm=120,
                      ticks_per_beat=480,

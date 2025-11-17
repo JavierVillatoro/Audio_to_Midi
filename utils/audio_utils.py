@@ -1,8 +1,8 @@
 import librosa
 import numpy as np
 
-SR = 8000
-HOP = 48
+SR = 16000
+HOP = 96
 BINS_PER_OCTAVE = 36
 N_BINS = 7 * BINS_PER_OCTAVE
 

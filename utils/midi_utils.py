@@ -4,7 +4,7 @@ import numpy as np
 # Mapeo
 MIDI_MAP = {-1: 0, 60: 1, 64: 2, 67: 3}  # Silencio, C4, E4, G4
 
-def midi_to_sequence_window(midi_path, sr=8000, hop_length=48):  # Probar diferentes
+def midi_to_sequence_window(midi_path, sr=16000, hop_length=96):  # Probar diferentes
     mid = mido.MidiFile(midi_path)
 
     # Calcular duración total en segundos
