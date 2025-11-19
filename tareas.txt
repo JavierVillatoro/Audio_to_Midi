@@ -1,3 +1,5 @@
+https://github.com/JavierVillatoro/Audio_to_Midi
+
 - Mirar concepto batch 
 - Grafica de error (curva) y confusion matrix (falsos positivos etc) , entender el concepto bien
 - Mirar concepto incertidumbre , como dar medida de incertidumbre sobre algo (con la varianza)
@@ -40,4 +42,6 @@ Es la más común y segura.
 Cambiar a 1600 Hz y reducir hop
 Quitar Padding , mi modelo tiene tamaño fijo.???? seguro?? 
 
-Ver si puedo reducir bins en cqt
+Ver si puedo reducir bins en cqt.
+
+
