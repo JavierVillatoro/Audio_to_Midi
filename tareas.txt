@@ -43,5 +43,12 @@ Cambiar a 1600 Hz y reducir hop
 Quitar Padding , mi modelo tiene tamaño fijo.???? seguro?? 
 
 Ver si puedo reducir bins en cqt.
+Tengo que usar ventanas de mismo tamaño que el midi? 
+
+Preguntas:
+- Definir coeficientes cepstrales , escala mel. 
+- Clasificador con knn.
+- Modelo de prediccion lineal.
 
 
+Comprobar que todos los midi son del mismo size (666)
