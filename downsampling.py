@@ -3,30 +3,18 @@ import librosa
 import soundfile as sf
 import numpy as np
 
-# --- ⚙️ Configuración ---
-# Directorio donde se encuentran tus archivos de audio originales
-INPUT_DIR = "data"
-# Directorio donde se guardarán los archivos con downsampling
-OUTPUT_DIR = "data_16000"
-# Frecuencia de muestreo original (ya la mencionaste, 22050 Hz)
+
+INPUT_DIR = "data_audio_22050"
+OUTPUT_DIR = "data"
 SR_ORIGINAL = 22050
-# Nueva frecuencia de muestreo deseada (16000 Hz)
 SR_TARGET = 16000
-# Duración de las muestras (4 segundos)
 DURACION = 4
-# Número total de archivos que esperas (001 a 300)
 NUM_ARCHIVOS = 300
 
-## ----------------------------------------------------------------
-## 📂 Crear el directorio de salida si no existe
-## ----------------------------------------------------------------
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
     print(f"Directorio creado: {OUTPUT_DIR}")
 
-## ----------------------------------------------------------------
-## 🔄 Procesamiento de archivos
-## ----------------------------------------------------------------
 print(f"Iniciando el downsampling de archivos de {INPUT_DIR} a {OUTPUT_DIR}...")
 
 archivos_procesados = 0
