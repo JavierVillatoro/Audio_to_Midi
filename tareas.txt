@@ -37,5 +37,7 @@ Procesar en ventanas
 Divide el audio largo en ventanas de 4 segundos, las pasas por el modelo y luego concatenas los vectores de salida.
 Es la más común y segura.
 
-Cambiar a 1600 Hz y reducri hop
-Quitar Padding , mi modelo tiene tamaño fijo.
+Cambiar a 1600 Hz y reducir hop
+Quitar Padding , mi modelo tiene tamaño fijo.???? seguro?? 
+
+Ver si puedo reducir bins en cqt
