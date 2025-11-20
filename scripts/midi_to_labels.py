@@ -1,6 +1,11 @@
 import os
 import librosa
 import numpy as np
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from utils.audio_utils import SR
 from utils.midi_utils import midi_to_sequence_window
 
