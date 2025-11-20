@@ -2,7 +2,7 @@ import mido
 import numpy as np
 
 # Mapeo
-MIDI_MAP = {-1: 0, 60: 1, 64: 2, 67: 3}  # Silencio, C4, E4, G4
+MIDI_MAP = {-1: 0, 60: 1, 64: 2, 67: 3}  # Silencio, C3, E3, G3
 
 def midi_to_sequence_window(midi_path, sr=16000, hop_length=96, duration=4.0):
 
