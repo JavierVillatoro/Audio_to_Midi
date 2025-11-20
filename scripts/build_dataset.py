@@ -7,6 +7,10 @@ LBL_PATH = "features/labels/"
 X = []
 Y = []
 
+
+## NORMALIZAR CQT????
+
+
 files = sorted([f for f in os.listdir(CQT_PATH) if f.endswith(".npy")])
 
 for f in files:
