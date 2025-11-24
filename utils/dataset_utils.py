@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 # ----------------------------------------------------
-# Normalización (muy importante para modelos de audio)
+# Normalización --- PROBLEMA DE ESTA ES QUE VA POR ARCHIVOS
 # ----------------------------------------------------
 def normalize_cqt(cqt):
     """

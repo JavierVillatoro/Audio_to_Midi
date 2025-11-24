@@ -1,5 +1,10 @@
 import numpy as np
+import sys
 import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from utils.dataset_utils import normalize_cqt
 
 CQT_PATH = "features/cqt/"
 LBL_PATH = "features/labels/"

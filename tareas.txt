@@ -56,3 +56,4 @@ Comprobar que todos los midi son del mismo size (666)
 Visualización de tus labels + CQT
 
 Normalizar valores cqt. ----- PROBLEMA QUE VA DE UNO EN UNO , MEJOR GLOBAL PRIMERO.
+optuna -- buscar funcion. 

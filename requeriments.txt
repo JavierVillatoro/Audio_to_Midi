@@ -5,3 +5,5 @@ audioread
 scipy
 mido
 torch 
+matplotlib
+optuna
