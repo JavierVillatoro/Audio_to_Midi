@@ -7,3 +7,5 @@ mido
 torch 
 matplotlib
 optuna
+umap_learn
+seaborn
