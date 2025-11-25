@@ -45,8 +45,8 @@ class AudioMIDIDataset(Dataset):
 train_dataset = AudioMIDIDataset(X_train_tensor, Y_train_tensor)
 val_dataset   = AudioMIDIDataset(X_val_tensor, Y_val_tensor)
 
-train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
-val_loader   = DataLoader(val_dataset, batch_size=4)
+train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
+val_loader   = DataLoader(val_dataset, batch_size=8)
 
 # -------------------------
 # Modelo CRNN simple
@@ -85,12 +85,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=1e-3)
+optimizer = optim.Adam(model.parameters(), lr=0.0009341062209856291) #1e-3 , actualizado optuna
 
 # -------------------------
 # Loop de entrenamiento simple
 # -------------------------
-n_epochs = 10
+n_epochs = 50 # Lo he subido a 50 para un entrenamiento completo 
 
 for epoch in range(n_epochs):
     model.train()

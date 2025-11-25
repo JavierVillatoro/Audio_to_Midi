@@ -23,8 +23,18 @@ Y_train_padded = pad_labels(Y_train)
 X_val_padded = pad_sequences(X_val, max_len=X_train_padded.shape[1])
 Y_val_padded = pad_labels(Y_val, max_len=Y_train_padded.shape[1])
 
+# Para X (las características): deben ser float (como lo espera el modelo CRNN)
+X_train_padded = X_train_padded.astype(np.float32)
+X_val_padded = X_val_padded.astype(np.float32)
+
+# Para Y (las etiquetas): deben ser int (para CrossEntropyLoss)
+Y_train_padded = Y_train_padded.astype(np.int64) # int64 es el valor por defecto que espera torch.long
+Y_val_padded = Y_val_padded.astype(np.int64)
+
+# --- Paso 4: Crear Tensores de PyTorch (Ahora esto funcionará) ---
+# Ahora la conversión a tensor con el tipo PyTorch deseado es exitosa
 X_train_tensor = torch.tensor(X_train_padded, dtype=torch.float32)
-Y_train_tensor = torch.tensor(Y_train_padded, dtype=torch.long)
+Y_train_tensor = torch.tensor(Y_train_padded, dtype=torch.long) # torch.long es el alias para torch.int64
 
 X_val_tensor = torch.tensor(X_val_padded, dtype=torch.float32)
 Y_val_tensor = torch.tensor(Y_val_padded, dtype=torch.long)
