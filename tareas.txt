@@ -66,6 +66,15 @@ Graficar epoch/error
 Graficar confusion matrix 
 Entender todo bien y hacer el modelo practico. 
 Masking padding cuando se entrene para concatenar 4s 
-Poner barra de tiempo para umap , muy lento n_l=5 min=0.01
+Poner barra de tiempo para umap , muy lento n_l=5 min=0.01 // Va muy lento , solo para repre
 
-Poder guardar el modelo o sus pesos antes de entrenarlo
+Poder guardar el modelo o sus pesos antes de entrenarlo ----> best_crnn_model.pth
+
+----OPTUNA HIPERPARAMETROS----
+ Optimización Finalizada
+---------------------------------------------------
+Mejor Pérdida de Validación: 0.2006
+Mejores Hiperparámetros:
+  hidden_dim: 128
+  lr: 0.0009341062209856291
+  batch_size: 8
