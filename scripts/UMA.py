@@ -60,7 +60,7 @@ print(f"Iniciando UMAP: Reduciendo {X_total.shape[0]} frames de {X_total.shape[1
 # Puedes reducir 'n_neighbors' o aumentar 'n_components' si tarda mucho.
 
 reducer = umap.UMAP(
-    n_neighbors=5,        # Configuracion inicual n_neighbors = 15
+    n_neighbors=10,        # Configuracion inicual n_neighbors = 15
     min_dist=0.01,          # Configuración inicial min_dist = 0.1
     n_components=2,        # n_components = 2,
     random_state=42,        #42

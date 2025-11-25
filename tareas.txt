@@ -78,3 +78,5 @@ Mejores Hiperparámetros:
   hidden_dim: 128
   lr: 0.0009341062209856291
   batch_size: 8
+
+Proximo proyecto con dataset maestro , intentar hacer un modelo de transcripcion automatica
