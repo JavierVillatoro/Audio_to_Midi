@@ -9,3 +9,4 @@ matplotlib
 optuna
 umap_learn
 seaborn
+pretty_midi
