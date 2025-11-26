@@ -247,6 +247,9 @@ def load_architecture(model_path, device):
     elif "crnn" in filename:
         print(">> Detectado arquitectura: CRNN Clásico")
         model = CRNN(input_dim=INPUT_DIM, hidden_dim=128, output_dim=OUTPUT_DIM)
+    elif "unet" in filename:
+        print(">> Detectado arquitectura: U-Net")
+        model = AudioUNet(n_channels=INPUT_DIM, n_classes=OUTPUT_DIM)
     else:
         # Fallback manual
         print("\n⚠️ No se puede determinar la arquitectura por el nombre del archivo.")
