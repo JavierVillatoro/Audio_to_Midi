@@ -131,3 +131,7 @@ Si en el futuro necesitas una precisión extrema para audios con mucho
 ruido de fondo o reverberación (donde pYIN falla), el estándar basado 
 en Inteligencia Artificial es CREPE
 
+mejorar graficas para comparar
+
+hacer midi de prueba original , guardarlo en amarillo y azul
+
