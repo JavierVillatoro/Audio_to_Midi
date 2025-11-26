@@ -80,3 +80,54 @@ Mejores Hiperparámetros:
   batch_size: 8
 
 Proximo proyecto con dataset maestro , intentar hacer un modelo de transcripcion automatica
+
+Probar otras optimizaciones (Adam...)
+Probar con otros modelos
+
+Prompt 
+Eres un profesional con mas de 20 años de experiencia 
+y vas a ayudarme a obtener los mejores modelos de redes neuronales posibles,
+quiero probar con otros modelos , actualmente estoy usando crnn. 
+Las entradas con cqts normalizados (300,666,252) y la salida midis en 
+ventanas de 666 , cada una con 0 como silencio 1 como C3(oC4 en librosa) 2 E3(E4) 3 G3(G4).  
+Asi que la entrada es entradas de audio de 4 segundos. 
+Que otros modelos podrian funcionar bien para este tipo de problemas? probar algo novedoso. 
+Te paso el codigo para ponerte en contexto:
+
+
+El CRNN es el estándar de la industria desde hace años 
+(paper de CQTNet o los trabajos de Google Magenta de ~2017).
+(LSTM/GRU) tienen problemas de lentitud en entrenamiento y 
+limitaciones para capturar dependencias globales muy complejas,
+aunque las bidireccionales mitigan esto un poco.
+
+La Red de Seguridad: Tu código ya tiene la lógica de if avg_val_loss < BEST_VAL_LOSS. Esto 
+significa que no hay riesgo de degradar el modelo. Si pones 200 épocas y el modelo empieza a 
+hacer overfitting en la época 60, tu archivo .pth guardado seguirá siendo el de la época 60. 
+Lo único que pierdes es tiempo de cómputo.
+
+He modificado el bucle de entrenamiento para incluir:
+
+Aumento de épocas a 100.
+
+ReduceLROnPlateau: Bajará el LR si no mejora en 5 épocas.
+
+Early Stopping: 
+Si no mejora en 15 épocas, corta el entrenamiento automáticamente (ahorra tiempo).
+
+
+Lo he hecho con transformer teniendo peores resultados si ponia early stopping. 
+Voy a alargarlo hasta 100 epochs por si aprende
+
+Parece que va a haber overfitting
+Transformer pilla mejor el G3 , curioso. 
+
+Hacer que se vea el midi de prueba original en la misma forma que los otros.
+
+OPTUNA PARA CADA Modelo
+
+Este script usa pYIN, que es el estándar "matemático". 
+Si en el futuro necesitas una precisión extrema para audios con mucho 
+ruido de fondo o reverberación (donde pYIN falla), el estándar basado 
+en Inteligencia Artificial es CREPE
+
