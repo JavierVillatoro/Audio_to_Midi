@@ -4,31 +4,21 @@ from PIL import Image
 import os
 
 # --- Configuración ---
-# Obtenemos la ruta del directorio donde se encuentra ESTE script.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Definimos el orden exacto de las imágenes
 DATA_CONFIG = [
-    ('Pitch_estimado.PNG', r'$\bf{}$ Pitch'),
-    ('Midi_Original.PNG', r'$\bf{}$ MIDI Original'),
-    ('Midi_crnn.PNG', r'$\bf{}$ CRNN'),
-    ('Midi_Transforemer.PNG', r'$\bf{}$ Transformer'), 
-    ('Midi_Transformer_Overfitting.PNG', r'$\bf{}$ Transformer'),
+    ('Pitch_estimado.PNG', r'$\bf{}$ CQT'), 
     ('Midi_Unet.PNG', r'$\bf{}$ U-Net'),
 ]
 
-# Dimensiones objetivo
 TARGET_WIDTH = 1600
 TARGET_HEIGHT = 250
 DPI = 300 
 
 def load_and_process_image(path, target_w, target_h):
-    """Carga, convierte a RGB y redimensiona."""
     if not os.path.exists(path):
-        print(f"Error: Archivo no encontrado en la ruta: {path}")
-        placeholder = np.zeros((target_h, target_w, 3), dtype=np.uint8)
-        return placeholder
-        
+        print(f"Error: Archivo no encontrado: {path}")
+        return np.zeros((target_h, target_w, 3), dtype=np.uint8)
     try:
         img = Image.open(path).convert('RGB')
         img_resized = img.resize((target_w, target_h), Image.Resampling.LANCZOS)
@@ -40,47 +30,52 @@ def load_and_process_image(path, target_w, target_h):
 def generate_comparison_plot():
     num_plots = len(DATA_CONFIG)
     
-    # Configuración de la figura
     fig, axes = plt.subplots(nrows=num_plots, ncols=1, 
                              figsize=(12, 2.5 * num_plots),
                              sharex=True, sharey=False,
                              gridspec_kw={'hspace': 0.05}) 
 
-    print("--- Iniciando proceso de imágenes ---")
-    print(f"Directorio base: {BASE_DIR}")
+    if num_plots == 1: axes = [axes]
+
+    print("--- Generando gráfica limpia (Sin ejes X) ---")
 
     for i, (ax, (img_filename, label)) in enumerate(zip(axes, DATA_CONFIG)):
         
         full_img_path = os.path.join(BASE_DIR, img_filename)
-        print(f"Procesando: {img_filename}...")
         
-        # 1. Cargar y procesar
+        # 1. Cargar
         img_data = load_and_process_image(full_img_path, TARGET_WIDTH, TARGET_HEIGHT)
         
+        # --- CAMBIO DE COLOR (Mismo que antes) ---
+        if img_filename == 'Midi_Unet.PNG':
+            grayscale = img_data.mean(axis=2)
+            mask_notes = grayscale > 50 
+            new_img = np.ones_like(img_data) * 255 # Fondo Blanco
+            new_img[mask_notes] = [255, 0, 0]      # Notas Rojas
+            img_data = new_img
+        # -----------------------------------------
+
         # 2. Visualizar
         ax.imshow(img_data, aspect='auto', interpolation='nearest')
         
-        # 3. Estilizado
-        ax.set_ylabel(label, rotation=0, ha='right', va='center', fontsize=11, labelpad=20)
-        ax.set_yticks([]) # Sin ticks en Y
+        # 3. Etiquetas laterales
+        ax.set_ylabel(label, rotation=0, ha='right', va='center', fontsize=12, labelpad=15, fontweight='bold')
+        
+        # 4. LIMPIEZA TOTAL DE EJES
+        ax.set_yticks([])     # Quitar números eje Y
+        ax.set_xticks([])     # Quitar números eje X
+        ax.tick_params(axis='both', which='both', length=0) # Quitar las "rayitas" de los ticks
         
         # Bordes finos
         for spine in ax.spines.values():
             spine.set_linewidth(0.5)
             spine.set_color('#333333')
 
-        # Configuración eje X
-        if i == num_plots - 1:
-            # Se ha eliminado el set_xlabel('Time Frames')
-            ax.tick_params(axis='x', labelsize=10)
-        else:
-            plt.setp(ax.get_xticklabels(), visible=False)
-            ax.tick_params(axis='x', length=0)
-
-    # Guardar
-    output_path = os.path.join(BASE_DIR, 'figure_model_comparison_clean.png')
+    output_filename = 'comparacion_spectrogram_vs_unet_clean.png'
+    output_path = os.path.join(BASE_DIR, output_filename)
+    
     plt.savefig(output_path, dpi=DPI, bbox_inches='tight')
-    print(f"\n¡Éxito! Gráfica generada en: {output_path}")
+    print(f"\n¡Listo! Imagen limpia guardada en: {output_path}")
     
     plt.show()
 

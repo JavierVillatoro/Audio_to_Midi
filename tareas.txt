@@ -127,3 +127,11 @@ hacer midi de prueba original , guardarlo en amarillo y azul
 vi que tengo que mejorar onset y frames , en unet si se ve mejor
 
 RECORTAR IMAGENES MIDI Y HACER UNA IMAGEN PARA COMPARACION DE DIFERENTES MODELOS EN PRUEBA
+
+--- Resumen Final Guardado ---
+Modelo: CRNN | Loss: 1.3861
+   Params: {'lr': 3.436385776662958e-05, 'batch_size': 32, 'hidden_dim': 128}
+Modelo: AudioTransNet | Loss: 1.3850
+   Params: {'lr': 0.0009745792347836478, 'batch_size': 16, 'd_model': 128, 'nhead': 4, 'num_layers': 2, 'dropout': 0.35255154499851116}
+Modelo: AudioUNet | Loss: 1.3856
+   Params: {'lr': 6.095812482818733e-05, 'batch_size': 32}
