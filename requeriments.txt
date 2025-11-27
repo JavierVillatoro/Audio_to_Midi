@@ -12,3 +12,4 @@ seaborn
 pretty_midi
 torch_audio
 torch_vision
+pillow

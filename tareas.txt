@@ -84,17 +84,6 @@ Proximo proyecto con dataset maestro , intentar hacer un modelo de transcripcion
 Probar otras optimizaciones (Adam...)
 Probar con otros modelos
 
-Prompt 
-Eres un profesional con mas de 20 años de experiencia 
-y vas a ayudarme a obtener los mejores modelos de redes neuronales posibles,
-quiero probar con otros modelos , actualmente estoy usando crnn. 
-Las entradas con cqts normalizados (300,666,252) y la salida midis en 
-ventanas de 666 , cada una con 0 como silencio 1 como C3(oC4 en librosa) 2 E3(E4) 3 G3(G4).  
-Asi que la entrada es entradas de audio de 4 segundos. 
-Que otros modelos podrian funcionar bien para este tipo de problemas? probar algo novedoso. 
-Te paso el codigo para ponerte en contexto:
-
-
 El CRNN es el estándar de la industria desde hace años 
 (paper de CQTNet o los trabajos de Google Magenta de ~2017).
 (LSTM/GRU) tienen problemas de lentitud en entrenamiento y 
@@ -135,3 +124,6 @@ mejorar graficas para comparar
 
 hacer midi de prueba original , guardarlo en amarillo y azul
 
+vi que tengo que mejorar onset y frames , en unet si se ve mejor
+
+RECORTAR IMAGENES MIDI Y HACER UNA IMAGEN PARA COMPARACION DE DIFERENTES MODELOS EN PRUEBA
