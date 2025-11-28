@@ -86,4 +86,4 @@ def visualize_midi_piano_roll_improved(midi_path, sr=SR, hop_length=HOP_LENGTH):
         print(f"❌ No se pudo generar la imagen debido a un error: {e}")
 
 # Ejemplo de uso (asegúrate de que Prueba.mid existe y las librerías están instaladas)
-visualize_midi_piano_roll_improved("unet.mid")
+visualize_midi_piano_roll_improved("Prueba_2_pred_best_unet_cleaned.mid")

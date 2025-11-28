@@ -135,3 +135,5 @@ Modelo: AudioTransNet | Loss: 1.3850
    Params: {'lr': 0.0009745792347836478, 'batch_size': 16, 'd_model': 128, 'nhead': 4, 'num_layers': 2, 'dropout': 0.35255154499851116}
 Modelo: AudioUNet | Loss: 1.3856
    Params: {'lr': 6.095812482818733e-05, 'batch_size': 32}
+
+HACER PRUEBA 2 MAS LARGA Y FUERA DE TAMAÑO PADDING

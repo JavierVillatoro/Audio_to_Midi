@@ -114,15 +114,11 @@ class AudioTransNet(nn.Module):
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super().__init__()
-        # Aquí estaba el problema. Debemos incluir el Dropout para que la estructura
-        # coincida con el archivo guardado, aunque en inferencia no actúe.
         self.double_conv = nn.Sequential(
             nn.Conv1d(in_channels, out_channels, kernel_size=3, padding=1),
             nn.BatchNorm1d(out_channels),
             nn.ReLU(inplace=True),
-            
-            nn.Dropout(0.1), # <--- ESTA LÍNEA ES CRUCIAL PARA CARGAR EL MODELO
-            
+            nn.Dropout(0.1), 
             nn.Conv1d(out_channels, out_channels, kernel_size=3, padding=1),
             nn.BatchNorm1d(out_channels),
             nn.ReLU(inplace=True)
@@ -183,6 +179,46 @@ def load_audio_cqt(path):
     cqt_db = librosa.amplitude_to_db(cqt, ref=np.max) 
     return cqt_db.T, len(y) / sr
 
+def clean_predictions(prediction_array, min_note_len=5, max_gap_len=5):
+    """
+    Limpia la salida de la red neuronal para eliminar ruido y unir notas rotas.
+    Integrado directamente para post-procesamiento.
+    """
+    cleaned = prediction_array.copy()
+    n = len(cleaned)
+    
+    # 1. Rellenar Huecos (Gap Filling)
+    i = 0
+    while i < n:
+        current_val = cleaned[i]
+        j = i + 1
+        while j < n and cleaned[j] == current_val: j += 1
+        
+        if j < n:
+            next_val = cleaned[j]
+            k = j + 1
+            while k < n and cleaned[k] == next_val: k += 1
+            gap_len = k - j
+            
+            if k < n and cleaned[k] == current_val:
+                if gap_len <= max_gap_len:
+                    cleaned[j:k] = current_val
+                    continue 
+        i = j 
+
+    # 2. Eliminar Notas Cortas (Pruning)
+    i = 0
+    while i < n:
+        current_val = cleaned[i]
+        j = i + 1
+        while j < n and cleaned[j] == current_val: j += 1
+        duration = j - i
+        if current_val != 0 and duration < min_note_len:
+            cleaned[i:j] = 0
+        i = j
+
+    return cleaned
+
 def predictions_to_midi(predictions, output_path, tempo=120):
     mid = mido.MidiFile()
     track = mido.MidiTrack()
@@ -195,7 +231,7 @@ def predictions_to_midi(predictions, output_path, tempo=120):
     
     frame_time_sec = HOP / SR 
     frame_time_ticks = int(round(mido.second2tick(frame_time_sec, ticks_per_beat, micro_s_per_beat)))
-    current_note = -1          
+    current_note = -1           
     last_event_frame = 0        
     
     for i, label in enumerate(predictions):
@@ -334,11 +370,42 @@ def run_inference(audio_path):
     if np.all(predictions == 0): print("⚠️ AVISO: Solo silencio detectado.")
     else: print("✅ Predicción con notas generada.")
 
+    # --- BLOQUE DE LIMPIEZA INTERACTIVA ---
+    print("\n--- POST-PROCESAMIENTO ---")
+    do_clean = input("¿Deseas aplicar limpieza de ruido (rellenar huecos/borrar notas cortas)? (s/n): ").strip().lower()
+    
+    if do_clean == 's':
+        print("\nConfiguración de Limpieza (Frames)")
+        # Info de contexto para el usuario
+        frame_ms = (HOP / SR) * 1000 # ~6 ms
+        print(f"ℹ️  1 Frame ≈ {frame_ms:.1f} ms")
+        print("   - 5 frames ≈ 30ms")
+        print("   - 10 frames ≈ 60ms")
+        print("   - 16 frames ≈ 100ms")
+
+        # Rellenar Huecos (Gap Filling)
+        try:
+            gap_in = input("Max Gap Length (huecos a rellenar) [Enter para default 5 frames]: ")
+            max_gap = int(gap_in) if gap_in else 5
+        except: max_gap = 5
+
+        # Eliminar Notas Cortas (Pruning)
+        try:
+            note_in = input("Min Note Length (notas a conservar) [Enter para default 10 frames]: ")
+            min_note = int(note_in) if note_in else 10
+        except: min_note = 10
+        
+        print(f"Aplicando limpieza... (Gap: {max_gap}, MinLen: {min_note})")
+        predictions = clean_predictions(predictions, min_note_len=min_note, max_gap_len=max_gap)
+        output_midi_path = output_midi_path.replace(".mid", "_cleaned.mid")
+        print("✅ Predicciones limpiadas.")
+
     predictions_to_midi(predictions, output_midi_path)
     visualize_midi_piano_roll(output_midi_path)
 
 if __name__ == '__main__':
     # RUTA DEL AUDIO A PROBAR
+    # Puedes cambiar esto o pedirlo por input también
     INPUT_AUDIO = 'C:/Users/franc/Desktop/Tecnologia_del_habla/Audio_to_Midi/Prueba_2.wav' 
     
     if os.path.exists(INPUT_AUDIO):
