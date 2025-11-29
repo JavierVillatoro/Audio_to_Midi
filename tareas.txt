@@ -137,3 +137,5 @@ Modelo: AudioUNet | Loss: 1.3856
    Params: {'lr': 6.095812482818733e-05, 'batch_size': 32}
 
 HACER PRUEBA 2 MAS LARGA Y FUERA DE TAMAÑO PADDING
+
+Escenario mas real , por eso creo Prueba_2 que dura un minuto.
