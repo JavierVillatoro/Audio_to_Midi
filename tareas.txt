@@ -139,3 +139,7 @@ Modelo: AudioUNet | Loss: 1.3856
 HACER PRUEBA 2 MAS LARGA Y FUERA DE TAMAÑO PADDING
 
 Escenario mas real , por eso creo Prueba_2 que dura un minuto.
+
+Trato la voz como instrumento, cqt , necesidad de onset y frames tras ver resultados
+
+Importancia en piano por ser percusivo
