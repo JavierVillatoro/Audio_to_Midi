@@ -79,7 +79,7 @@ class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super().__init__()
         self.double_conv = nn.Sequential(
-            nn.Conv1d(in_channels, out_channels, kernel_size=3, padding=1),
+            nn.Conv1d(in_channels, out_channels, kernel_size=3, padding=1), #De 3x3 por eso kernel_size 3 , mirar unet paper
             nn.BatchNorm1d(out_channels),
             nn.ReLU(inplace=True),
             # Un poco de Dropout ayuda a que no memorice el dataset pequeño

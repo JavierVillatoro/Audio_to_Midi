@@ -143,3 +143,13 @@ Escenario mas real , por eso creo Prueba_2 que dura un minuto.
 Trato la voz como instrumento, cqt , necesidad de onset y frames tras ver resultados
 
 Importancia en piano por ser percusivo
+
+Nueva arquitectura propuesta , harmonic res unet
+
+Probar con esta arquitectura 
+
+Ser mas creativo.
+
+Añadir unet + bi lstm , hacer inferencia de nueva arquitectura unet + bilstm, ver midis para comparación
+
+Tiempo real pregunta
