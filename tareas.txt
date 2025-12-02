@@ -152,4 +152,6 @@ Ser mas creativo.
 
 Añadir unet + bi lstm , hacer inferencia de nueva arquitectura unet + bilstm, ver midis para comparación
 
-Tiempo real pregunta
+Tiempo real pregunta.
+
+Optuna para nuevo modelo.
