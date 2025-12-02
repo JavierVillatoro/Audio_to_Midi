@@ -16,7 +16,6 @@ from optuna.trial import TrialState
 # -------------------------------------------------------------------------
 # 0. CONFIGURACIÓN E IMPORTACIONES
 # -------------------------------------------------------------------------
-# Asegúrate de que utils.dataset_utils esté accesible
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 try:
     from utils.dataset_utils import load_full_dataset, split_dataset, pad_sequences, pad_labels
