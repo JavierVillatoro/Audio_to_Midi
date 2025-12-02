@@ -155,3 +155,25 @@ Añadir unet + bi lstm , hacer inferencia de nueva arquitectura unet + bilstm, v
 Tiempo real pregunta.
 
 Optuna para nuevo modelo.
+
+Mejorar bias en clase 0 
+
+Weighted Cross Entropy (Ponderación de Clases): Esta es la solución más directa al sesgo. 
+Calculamos cuántas muestras hay de cada clase y le damos un "peso" inverso a la función de pérdida. 
+Si hay muchos 0, el modelo será penalizado poco por acertar el 0, pero será penalizado fuertemente 
+si falla en el 1, 2 o 3. Esto obliga a la red a prestar atención a las notas musicales.
+
+Optuna (Optimización de Hiperparámetros): He encapsulado el entrenamiento en una función objetivo. 
+Optuna buscará automáticamente la mejor combinación de Learning Rate, LSTM Hidden Size, Dropout y Weight Decay.
+
+Pruning (Poda): Si una prueba de Optuna va mal en las primeras épocas, 
+se cancela automáticamente para no perder tiempo y probar otros parámetros.
+--- Pesos calculados para balancear clases ---
+Clase 0: 42867 muestras -> Peso: 1.0000
+Clase 1: 30353 muestras -> Peso: 1.4123
+Clase 2: 31362 muestras -> Peso: 1.3668
+Clase 3: 35278 muestras -> Peso: 1.2151
+
+Cambiar pesos de las muestras , probar power 0.75.
+
+Parece que empeora , quizas probar con crnn los pesos?  

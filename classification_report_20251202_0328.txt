@@ -1,0 +1,10 @@
+              precision    recall  f1-score   support
+
+    Silencio       0.94      0.89      0.91      9735
+          C3       0.96      0.95      0.96      6485
+          E3       0.93      0.95      0.94      6410
+          G3       0.93      0.98      0.96      7340
+
+    accuracy                           0.94     29970
+   macro avg       0.94      0.94      0.94     29970
+weighted avg       0.94      0.94      0.94     29970

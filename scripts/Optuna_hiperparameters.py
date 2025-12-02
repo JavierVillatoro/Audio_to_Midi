@@ -49,8 +49,7 @@ except Exception as e:
 
 X_train, Y_train, X_val, Y_val, X_test, Y_test = split_dataset(X, Y)
 
-# Simulamos el padding si no usas tus utils externas
-# Asegúrate de usar tus funciones pad_sequences reales aquí
+# padding (si no uso utils externo)
 X_train_padded = X_train.astype(np.float32)
 Y_train_padded = Y_train.astype(np.int64)
 X_val_padded = X_val.astype(np.float32)

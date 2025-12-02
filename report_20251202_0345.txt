@@ -1,0 +1,10 @@
+              precision    recall  f1-score   support
+
+         Sil       0.93      0.88      0.90      9735
+          C3       0.94      0.96      0.95      6485
+          E3       0.91      0.96      0.93      6410
+          G3       0.94      0.96      0.95      7340
+
+    accuracy                           0.93     29970
+   macro avg       0.93      0.94      0.93     29970
+weighted avg       0.93      0.93      0.93     29970
