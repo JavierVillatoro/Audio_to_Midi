@@ -10,14 +10,12 @@ import math
 import optuna
 import functools
 
-# Asegúrate de que las utilidades estén disponibles
+
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 # from utils.dataset_utils import load_full_dataset, split_dataset, pad_sequences, pad_labels
 
-# --- MOCK DE UTILIDADES PARA QUE EL SCRIPT SEA AUTOCONTENIDO EN ESTE EJEMPLO ---
-# (Si tienes tus archivos utils, descomenta las lineas de arriba y borra estas funciones dummy)
 def load_full_dataset(x_path, y_path):
-    print("Cargando dataset...")
+    print("Loading dataset...")
     # Simulación de datos para que el código compile si no tienes los .npy presentes
     # Reemplaza esto con tu carga real si tienes los archivos
     if not os.path.exists(x_path):
