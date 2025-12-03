@@ -9,7 +9,7 @@ Y = []
 
 files = sorted([f for f in os.listdir(CQT_PATH) if f.endswith(".npy")])
 
-# 1. CONSOLIDAR DATOS (sin normalizar aún)
+# 1. CONSOLIDAR DATOS 
 for f in files:
     cqt = np.load(os.path.join(CQT_PATH, f), allow_pickle=True)
     labels = np.load(os.path.join(LBL_PATH, f), allow_pickle=True)
