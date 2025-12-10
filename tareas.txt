@@ -177,3 +177,8 @@ Clase 3: 35278 muestras -> Peso: 1.2151
 Cambiar pesos de las muestras , probar power 0.75.
 
 Parece que empeora , quizas probar con crnn los pesos?  
+
+
+Optuna a nuevo modelo e imprimir metricas prec recall f1score?
+
+añadir a la funcion de optuna la de unet + bi-lstm 
