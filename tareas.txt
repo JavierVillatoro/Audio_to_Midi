@@ -182,3 +182,5 @@ Parece que empeora , quizas probar con crnn los pesos?
 Optuna a nuevo modelo e imprimir metricas prec recall f1score?
 
 añadir a la funcion de optuna la de unet + bi-lstm 
+
+libreta 
