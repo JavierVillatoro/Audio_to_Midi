@@ -1,0 +1,44 @@
+======================================================
+REPORTE FINAL DE ENTRENAMIENTO - 20251216_1634
+======================================================
+
+1. HIPERPARÁMETROS GANADORES (OPTUNA):
+{
+    "lr": 0.0002517212942975041,
+    "lstm_hidden": 64,
+    "batch_size": 4,
+    "dropout": 0.12878559693252706,
+    "focal_gamma": 1.9346438395195598
+}
+
+2. CONFIGURACIÓN DEL ENTRENAMIENTO FINAL:
+   - Epochs Totales: 50
+   - Class Weights (Power 0.75): [0.8479996 1.0985928 1.0719762 0.9814315]
+   - Device: cuda
+
+3. MÉTRICAS GLOBALES (MEJOR MODELO EN VALIDACIÓN):
+   - Best Val Loss (Focal):  0.068353
+   - Accuracy Global:        0.914615
+   - Balanced Accuracy:      0.922645
+   - F1-Score Macro:         0.917192
+   - F1-Score Weighted:      0.914019
+
+4. REPORTE DE CLASIFICACIÓN DETALLADO:
+              precision    recall  f1-score   support
+
+Silencio (0)     0.9289    0.8407    0.8826      9735
+     Clase 1     0.9357    0.9340    0.9349      6485
+     Clase 2     0.8725    0.9599    0.9141      6410
+     Clase 3     0.9191    0.9560    0.9372      7340
+
+    accuracy                         0.9146     29970
+   macro avg     0.9141    0.9226    0.9172     29970
+weighted avg     0.9159    0.9146    0.9140     29970
+
+5. MATRIZ DE CONFUSIÓN (TEXTO):
+[[8184  400  573  578]
+ [ 204 6057  204   20]
+ [ 229    8 6153   20]
+ [ 193    8  122 7017]]
+
+======================================================

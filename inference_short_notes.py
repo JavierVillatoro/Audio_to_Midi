@@ -406,7 +406,7 @@ def run_inference(audio_path):
 if __name__ == '__main__':
     # RUTA DEL AUDIO A PROBAR
     # Puedes cambiar esto o pedirlo por input también
-    INPUT_AUDIO = 'C:/Users/franc/Desktop/Tecnologia_del_habla/Audio_to_Midi/Prueba_2.wav' 
+    INPUT_AUDIO = 'C:/Users/franc/Desktop/Tecnologia_del_habla/Audio_to_Midi/Prueba_3.wav' 
     
     if os.path.exists(INPUT_AUDIO):
         run_inference(INPUT_AUDIO)
